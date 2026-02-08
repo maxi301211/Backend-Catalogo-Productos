@@ -4,8 +4,8 @@
   "description": "Backend de catalogo de una caetería",
   "main": "index.ts",
   "scripts": {
-    "start": "node index.ts",
-    "dev": "node --env-file .env --watch index.ts"
+    "dev": "tsx --env-file=.env --watch index.ts",
+    "start": "tsx index.ts"
   },
   "keywords": [],
   "author": "Cajal Borquez Maximo Daniel",
@@ -20,6 +20,7 @@
     "morgan": "^1.10.1"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6"
+    "@types/express": "^5.0.6",
+    "tsx": "^4.21.0"
   }
 }
