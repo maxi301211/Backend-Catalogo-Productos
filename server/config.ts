@@ -22,19 +22,19 @@ export default class Server implements Servidor {
   }
 
   middlewares() {
-    this.app.use(cors()); // recibir conecciones remotas 
-    this.app.use(morgan('dev')) // info extra en la terminal
-    this.app.use(express.json()) // interpreta solicitudes en formato JSON
-    const __filename = fileURLToPath(import.meta.url)
-    const __dirname = path.dirname(__filename)
-    console.log(__filename)
-    console.log(__dirname)
-    this.app.use(express.static(path.join(__dirname, '../public')))
+    this.app.use(cors()); // recibir conecciones remotas
+    this.app.use(morgan("dev")); // info extra en la terminal
+    this.app.use(express.json()); // interpreta solicitudes en formato JSON
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    console.log(__filename);
+    console.log(__dirname);
+    this.app.use(express.static(path.join(__dirname, "../public")));
   }
 
-  listen(){
-    this.app.listen(this.port, ()=>{
-      console.info(`Server iniciado: http://localhost:${this.port}`)
-    })
+  listen() {
+    this.app.listen(this.port, () => {
+      console.info(`Server iniciado: http://localhost:${this.port}`);
+    });
   }
 }
