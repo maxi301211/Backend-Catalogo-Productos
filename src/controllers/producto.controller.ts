@@ -22,14 +22,23 @@ export const crearProducto = async (req: Request, res: Response) => {
   }
 };
 
-export const obtenerProducto = async (req: Request, res: Response) => {
+export const obtenerProductos = async (req: Request, res: Response) => {
   try {
     // 1- Buscar los productos ne la base de datos.
-    const listaProductos = await Producto.find()
+    const listaProductos = await Producto.find();
     // 2- responder con el status adecuado 200 y devolver los productos.
-    res.status(200).json(listaProductos)
+    res.status(200).json(listaProductos);
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ mensaje: "Error al obtener los productos"})
+    console.error(error);
+    res.status(500).json({ mensaje: "Error al obtener los productos" });
+  }
+};
+
+export const obtenerProducto = async (req: Request, res: Response) => {
+  try {
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: "Error al obtener los productos" });
   }
 };
