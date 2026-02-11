@@ -15,7 +15,7 @@ export const crearProducto = async (req: Request, res: Response) => {
     const productoNuevo = new Producto(req.body);
     await productoNuevo.save();
     // 3- enviar el mensaje de respuesta
-    res.status(201).json({ mensaje: "El mensaje fue creado correctamente." });
+    res.status(201).json({ mensaje: "El producto fue creado correctamente." });
   } catch (error) {
     console.error(error);
     res.status(500).json({ mensaje: "Error al crear el producto." });
@@ -34,11 +34,18 @@ export const obtenerProductos = async (req: Request, res: Response) => {
   }
 };
 
-export const obtenerProducto = async (req: Request, res: Response) => {
+export const obtenerProductoPorID = async (req: Request, res: Response) => {
   try {
-    
+    // 1- Buscar el producto por el campo del ID.
+    const productoBuscado = await Producto.findById(req.params.id);
+    // 2- Chequear que encontre el producto, si no existe enviar un mensaje de error.
+    if (!productoBuscado) {
+      return res.status(404).json({ mensaje: "Prodcuto no encontrado." });
+    }
+    // 3- Enviar el producto en la respuesta.
+    res.status(200).json(productoBuscado);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ mensaje: "Error al obtener los productos" });
+    res.status(500).json({ mensaje: "Error al obtener el producto por ID" });
   }
 };
