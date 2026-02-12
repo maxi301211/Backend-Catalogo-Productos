@@ -3,7 +3,7 @@ import Producto from "../models/producto.js";
 
 export const prueba = (req: Request, res: Response) => {
   res.status(200);
-  res.send("Este es un mensaje desde el contralodor");
+  res.send("Este es un mensaje desde el contralodor.");
 };
 
 export const crearProducto = async (req: Request, res: Response) => {
@@ -30,7 +30,7 @@ export const obtenerProductos = async (req: Request, res: Response) => {
     res.status(200).json(listaProductos);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ mensaje: "Error al obtener los productos" });
+    res.status(500).json({ mensaje: "Error al obtener los productos." });
   }
 };
 
@@ -46,7 +46,7 @@ export const obtenerProductoPorID = async (req: Request, res: Response) => {
     res.status(200).json(productoBuscado);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ mensaje: "Error al obtener el producto por ID" });
+    res.status(500).json({ mensaje: "Error al obtener el producto por ID." });
   }
 };
 
@@ -63,6 +63,23 @@ export const borrarProductoPorID = async (req: Request, res: Response)=>{
     res.status(200).json({mensaje: "Producto eliminado correctamente."})
   } catch (error) {
     console.error(error)
-    res.status(500).json({mensaje: "No se pudo eliminar el producto por ID"})
+    res.status(500).json({mensaje: "No se pudo eliminar el producto por ID."})
+  }
+}
+
+export const editarProductoPorID = async (req: Request, res: Response) =>{
+  try {
+    // TODO: Aquí debo agregar las validaciones.
+    // 1- Buscar el producto por el ID y modificarlo.
+    const productoEditado = await Producto.findByIdAndUpdate(req.params.id, )
+    // 1.1- Chequear si pudo encontrar el producto. 
+    if(!productoEditado){
+      return res.status(404).json({mensaje: "Producto no encontrado."})
+    }
+    // 2- Enviar un mensaje de solicitud exitosa. 
+    res.status(200).json({mensaje: "Producto editado correctamente."})
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({mensaje: "Error al editar el producto por ID."})
   }
 }
