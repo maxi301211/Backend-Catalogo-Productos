@@ -1,5 +1,5 @@
-import Server from "./server/config.ts";
-import router from "./src/routes/index.routes.ts";
+import Server from "./server/config.js";
+import router from "./src/routes/index.routes.js";
 
 const server = new Server();
 
